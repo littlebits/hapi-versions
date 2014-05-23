@@ -1,0 +1,30 @@
+{
+  "name": "hapi-versions",
+  "version": "0.0.0",
+  "description": "Easy versioning of hapi HTTP APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jasonkuhrt/hapi-versions.git"
+  },
+  "keywords": [
+    "api",
+    "version",
+    "versioning",
+    "hapi",
+    "inheritance",
+    "developer"
+  ],
+  "author": "Jason Kuhrt <jasonkuhrt@me.com> (http://jasonkuhrt.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonkuhrt/hapi-versions/issues"
+  },
+  "homepage": "https://github.com/jasonkuhrt/hapi-versions",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  }
+}
