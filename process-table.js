@@ -1,22 +1,15 @@
 'use strict';
 var o = require('lodash');
 
-// TODO get from which source?
-var versions = [1, 1.1, 2, 3];
-
 
 
 module.exports = process_table;
 
-
-
-
-
-function process_table(routes){
+function process_table(routes, versions){
   var vrs2 = route_versions(routes);
   // console.log(vrs2);
 
-  var vrs3 = o.map(vrs2, find_holes);
+  var vrs3 = o.map(vrs2, find_holes(versions));
   // console.log(vrs3);
 
   var vrs4 = to_settings(vrs3);
@@ -58,22 +51,24 @@ function to_settings(vrs3){
 
 
 
-function find_holes(vr2){
-  var av = applicable_versions(vr2, versions);
+function find_holes(versions){
+  return function(vr2){
+    var av = applicable_versions(vr2, versions);
 
-  /* Fill route definitions for new versions
-  from old versions. We iterate down from master */
-  return o.foldr(av, do_fold, {});
+    /* Fill route definitions for new versions
+    from old versions. We iterate down from master */
+    return o.foldr(av, do_fold, {});
 
-  function do_fold(acc, v, i){
-    /* If there is no route definition for
-    this api version, search for a definition
-    in a paste version. */
-    if (!vr2[v]) {
-      acc[v] = find_past_definition(vr2, av.slice(0, i));
+    function do_fold(acc, v, i){
+      /* If there is no route definition for
+      this api version, search for a definition
+      in a paste version. */
+      if (!vr2[v]) {
+        acc[v] = find_past_definition(vr2, av.slice(0, i));
+      }
+      return acc;
     }
-    return acc;
-  }
+  };
 }
 
 function find_past_definition(vr2, av){

@@ -1,29 +1,33 @@
 'use strict';
 
+var o = require('lodash');
 // var boom = require('hapi').boom; TODO, see below
 
 
 
-module.exports = ext_parse_api_version;
+module.exports = create_parser;
 
-// Parse the API version from a request
-//
-function ext_parse_api_version(request, next){
-  var v;
+function create_parser(versions){
 
-  if ((v = from_headers(request))) {
-    set_uri(v, request);
-    return next();
-  }
+  // Parse the API version from a request
+  //
+  return function request_versioner(request, next){
+    var v;
 
-  if (from_uri(request)) return next();
+    if ((v = from_headers(request))) {
+      set_uri(v, request);
+      return next();
+    }
 
-  // else
-  // TODO assume bleeding edge is being requested
-  set_uri(1, request);
-  next();
-  // TODO cases that should return an invalid version error
-  // next(boom.badRequest('Missing valid Accept header with specified API version. Need help? See https://developer.littlebitscloud.cc/api-rest#version'))
+    if (from_uri(request)) return next();
+
+    // else
+    // TODO assume bleeding edge is being requested
+    set_uri(o.max(versions), request);
+    next();
+    // TODO cases that should return an invalid version error
+    // next(boom.badRequest('Missing valid Accept header with specified API version. Need help? See https://developer.littlebitscloud.cc/api-rest#version'))
+  };
 }
 
 

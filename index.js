@@ -8,7 +8,7 @@ var o = require('lodash');
 
 module.exports = plugin;
 
-function plugin(server){
-  o.each(process_table(server.table()), server.route.bind(server));
-  server.ext('onRequest', ext_parse_api_version);
+function plugin(server, versions){
+  o.each(process_table(server.table(), versions), server.route.bind(server));
+  server.ext('onRequest', ext_parse_api_version(versions));
 }
