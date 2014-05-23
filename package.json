@@ -1,6 +1,6 @@
 {
   "name": "hapi-versions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Easy versioning of hapi HTTP APIs",
   "main": "index.js",
   "scripts": {},
