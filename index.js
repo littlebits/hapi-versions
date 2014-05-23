@@ -1,8 +1,8 @@
 'use strict';
 
-var ext_parse_api_version = require('./uri-rewriter');
-var process_table = require('./process-table');
 var o = require('lodash');
+var ext_parse_api_version = require('./lib/uri-rewriter');
+var process_table = require('./lib/process-table');
 
 
 

@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "description": "Easy versioning of hapi HTTP APIs",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git://github.com/jasonkuhrt/hapi-versions.git"
@@ -24,6 +23,7 @@
   },
   "homepage": "https://github.com/jasonkuhrt/hapi-versions",
   "dependencies": {
+    "boom": "^2.4.1",
     "lodash": "^2.4.1"
   }
 }
