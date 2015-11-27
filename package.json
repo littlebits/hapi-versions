@@ -31,6 +31,10 @@
     "lodash": "^2.4.1"
   },
   "devDependencies": {
-    "babel": "^5.8.34"
+    "babel": "^5.8.34",
+    "eslint-config-littlebits": "^0.2.1"
+  },
+  "eslintConfig": {
+    "extends": "littlebits"
   }
 }
